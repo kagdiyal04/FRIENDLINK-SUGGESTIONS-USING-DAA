@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Dashboard - FriendLink</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+  <script>
+    async function addFriend(friendId, btn) {
+      btn.disabled = true;
+      btn.innerText = 'Adding...';
+      const res = await fetch('/add_friend/' + friendId, {method: 'POST'});
+      if (res.ok) {
+        btn.innerText = 'Friend Added';
+      } else {
+        btn.innerText = 'Failed';
+        btn.disabled = false;
+      }
+    }
+  </script>
+</head>
+<body class="full-screen-bg">
+  <header>
+    <h1>Hello, {{ user['name'] }}</h1>
+    <a href="{{ url_for('logout') }}" class="btn small-btn">Logout</a>
+  </header>
+  <main>
+    <section class="profile-card">
+      <img src="{{ url_for('static', filename='images/' + (user['profile_photo'] or 'default.png')) }}" alt="Profile Photo" />
+      <p><b>Age:</b> {{ user['age'] }}</p>
+      <p><b>Location:</b> {{ user['location'] }}</p>
+      <p><b>Interests:</b> {{ user['interests'] }}</p>
+    </section>
+
+    <section class="suggestions">
+      <h2>Friend Suggestions</h2>
+      <div class="suggestions-list">
+        {% for sugg in suggestions %}
+          <div class="suggestion-card animated-zoom-in">
+            <h3>{{ sugg['name'] }}</h3>
+            <p><b>Location:</b> {{ sugg['location'] }}</p>
+            <p><b>Interests:</b> {{ sugg['interests'] }}</p>
+            <button onclick="addFriend({{ sugg['user_id'] }}, this)" class="btn">Add Friend</button>
+          </div>
+        {% else %}
+          <p>No suggestions available right now.</p>
+        {% endfor %}
+      </div>
+    </section>
+  </main>
+</body>
+</html>

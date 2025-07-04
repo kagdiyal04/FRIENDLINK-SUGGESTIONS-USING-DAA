@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block title %}Register - FriendLink{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-md-6">
+    <h2 class="mb-4">Register</h2>
+    {% if error %}
+      <div class="alert alert-danger">{{ error }}</div>
+    {% endif %}
+    <form method="post" action="{{ url_for('register') }}">
+      <div class="mb-3">
+        <label for="name" class="form-label">Username</label>
+        <input name="name" type="text" class="form-control" id="name" required />
+      </div>
+      <div class="mb-3">
+        <label for="age" class="form-label">Age</label>
+        <input name="age" type="number" class="form-control" id="age" min="1" />
+      </div>
+      <div class="mb-3">
+        <label for="location" class="form-label">Location</label>
+        <input name="location" type="text" class="form-control" id="location" />
+      </div>
+      <div class="mb-3">
+        <label for="interests" class="form-label">Interests (comma-separated)</label>
+        <input name="interests" type="text" class="form-control" id="interests" />
+      </div>
+      <div class="mb-3">
+        <label for="friends" class="form-label">Friends (usernames, comma-separated)</label>
+        <input name="friends" type="text" class="form-control" id="friends" />
+      </div>
+      <div class="mb-3">
+        <label for="photo" class="form-label">Photo URL (optional)</label>
+        <input name="photo" type="url" class="form-control" id="photo" />
+      </div>
+      <div class="mb-3">
+        <label for="password" class="form-label">Password</label>
+        <input name="password" type="password" class="form-control" id="password" required />
+      </div>
+      <button type="submit" class="btn btn-success">Register</button>
+      <a href="{{ url_for('home') }}" class="btn btn-link">Back to Login</a>
+    </form>
+  </div>
+</div>
+{% endblock %}
