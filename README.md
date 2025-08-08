@@ -44,7 +44,7 @@ Edit
 ## Setup Instructions
 
 1. Clone the repository:
-git clone https://github.com/kagdiyal04/friendlink.git
+git clone (https://github.com/kagdiyal04/FRIENDLINK-SUGGESTIONS-USING-DAA.git)
 cd friendlink
 
 markdown
