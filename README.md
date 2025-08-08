@@ -44,7 +44,7 @@ Edit
 ## Setup Instructions
 
 1. Clone the repository:
-git clone https://github.com/yourusername/friendlink.git
+git clone https://github.com/kagdiyal04/friendlink.git
 cd friendlink
 
 markdown
